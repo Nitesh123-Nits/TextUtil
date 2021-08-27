@@ -6,14 +6,22 @@ body{
 }
 .btn {
     width: 13rem;
+    margin-bottom: 1rem;
 }
 ::selection{
     background-color: rgba(8, 8, 41, 0.979);
     color: aliceblue;
 }
 .alert{
-    position: fixed;
+    
     border: 2px solid rgb(2, 1, 43);
     width: 100%;
     text-align: center;
+}
+textarea{
+    box-shadow: 4px 4px rgb(44, 235, 53);
+    
+}
+.accordion{
+    padding: 2rem;
 }

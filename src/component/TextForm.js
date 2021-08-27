@@ -49,6 +49,8 @@ export default function TextForm(props) {
         const txt=document.getElementById("myBox");
         txt.select();
         navigator.clipboard.writeText(txt.value);
+        document.getSelection().removeAllRanges();
+        //props.showAlert("Copied to clipboard!","success");
       
     }
     const removeExtraSpaces=()=>{
@@ -64,27 +66,27 @@ export default function TextForm(props) {
   <h1 className={`text-${props.mode==='light'?'dark':'light'}`}>{props.heading} </h1>
   <textarea className="form-control" id="myBox" onChange={handleOnChange} rows="8" value={text}></textarea>
 </div>  
-<button className="btn btn-primary p-2" onClick={handleUpClick}>ConvertToUppercase</button>    
-<button className="btn btn-primary p-2 m-2" onClick={handleUpClick2}>ConvertToLoweCase</button>  
-<button className="btn btn-primary p-2 m-2" onClick={handleCopy}>Copy Text</button>
-<button className="btn btn-primary p-2 m-2" onClick={handleClear}>Clear Text</button> 
-<button className="btn btn-primary p-2 m-2" onClick={removeExtraSpaces}>Remove Extra Spaces</button> 
-<button className="btn btn-primary p-2 m-2" onClick={bold}>Bold</button> 
-<button className="btn btn-primary p-2 m-2" onClick={normal}>Normal</button>
-<button className="btn btn-primary p-2 " onClick={italic}>Italic</button>
-<button className="btn btn-primary p-2 m-2" onClick={textNormal}>Normal_text</button>
+<button disabled={text.length===0} className="btn btn-primary p-2 mx-2" onClick={handleUpClick}>ConvertToUppercase</button>    
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={handleUpClick2}>ConvertToLoweCase</button>  
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={handleCopy}>Copy Text</button>
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={handleClear}>Clear Text</button> 
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={removeExtraSpaces}>Remove Extra Spaces</button> 
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={bold}>Bold</button> 
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={normal}>Normal</button>
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={italic}>Italic</button>
+<button  disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onClick={textNormal}>Normal_text</button>
 
-<button className="btn btn-primary p-2 m-2" onChange={color}>
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onChange={color}>
 <input type="color" name="color" id="color" />Text_Color </button>
-<button className="btn btn-primary p-2 m-2" onChange={txtarbg}>
+<button disabled={text.length===0}  className="btn btn-primary p-2 mx-2" onChange={txtarbg}>
 <input type="color" name="color" id="color2" />Change_bg </button>
 
  
 </div>
 <div className={`container my-3 text-${props.mode==='light'?'dark':'light'}`}>
     <h1>Your text summary</h1>
-    <p><b>{text.trim().split(" ").length }</b> words,<b>{text.length}</b> characters</p>
-    <p><b>{.008*text.split(" ").length}</b> minutes to read</p>
+    <p><b>{text.split(" ").filter((e)=>{return e.length!==0}).length }</b> words,<b>{text.length}</b> characters</p>
+    <p><b>{.008*text.split(" ").filter((e)=>{return e.length!==0}).length}</b> minutes to read</p>
     <h3>Preview</h3>
     <p>{text.length>0?text:"Enter something in the text box to preview it here!"}</p>
 </div>
