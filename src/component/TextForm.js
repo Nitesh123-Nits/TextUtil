@@ -14,30 +14,31 @@ export default function TextForm(props) {
     const handleOnChange=(event)=>{
     setText(event.target.value);
     }
+    const txt=document.getElementById("myBox");
     const bold=()=>{
-        const txt=document.getElementById("myBox");
+       
         txt.style.fontWeight="700";
     }
     const normal=()=>{
-        const txt=document.getElementById("myBox");
+        
         txt.style.fontWeight="400";
     }
     const italic=()=>{
-        const txt=document.getElementById("myBox");
+        
         txt.style.fontStyle="italic";
     }
     const textNormal=()=>{
-        const txt=document.getElementById("myBox");
+        
         txt.style.fontStyle="normal";
     }
     
     const color=()=>{
-        const txt=document.getElementById("myBox");
+        
         const clr=document.getElementById("color");
         txt.style.color=clr.value;
     }
     const txtarbg=()=>{
-        const txt=document.getElementById("myBox");
+        
         const clr=document.getElementById("color2");
         txt.style.backgroundColor=clr.value;
     }
@@ -46,7 +47,7 @@ export default function TextForm(props) {
         setText(newText);
     }
     const handleCopy=()=>{
-        const txt=document.getElementById("myBox");
+        
         txt.select();
         navigator.clipboard.writeText(txt.value);
         document.getSelection().removeAllRanges();
@@ -85,7 +86,7 @@ export default function TextForm(props) {
 </div>
 <div className={`container my-3 text-${props.mode==='light'?'dark':'light'}`}>
     <h1>Your text summary</h1>
-    <p><b>{text.split(" ").filter((e)=>{return e.length!==0}).length }</b> words,<b>{text.length}</b> characters</p>
+    <p><b>{text.split(/\s+/).filter((e)=>{return e.length!==0}).length }</b> words,<b>{text.length}</b> characters</p>
     <p><b>{.008*text.split(" ").filter((e)=>{return e.length!==0}).length}</b> minutes to read</p>
     <h3>Preview</h3>
     <p>{text.length>0?text:"Enter something in the text box to preview it here!"}</p>
